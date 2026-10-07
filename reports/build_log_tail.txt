@@ -1,0 +1,45 @@
+2026-10-07 19:29:53,317 INFO Overpass query via https://overpass-api.de/api/interpreter
+2026-10-07 19:29:57,198 INFO Overpass answered from https://overpass-api.de/api/interpreter (0.3 MB)
+2026-10-07 19:29:57,207 INFO Overpass query via https://overpass-api.de/api/interpreter
+2026-10-07 19:31:24,757 INFO Overpass answered from https://overpass-api.de/api/interpreter (13.7 MB)
+2026-10-07 19:31:24,842 INFO osm_ways = 2103
+2026-10-07 19:31:24,842 INFO Overpass query via https://overpass-api.de/api/interpreter
+2026-10-07 19:31:29,961 INFO Overpass answered from https://overpass-api.de/api/interpreter (0.0 MB)
+2026-10-07 19:31:29,962 INFO places = 29
+2026-10-07 19:31:35,177 INFO Working extent (lon/lat): (89.784, 25.001, 92.833, np.float64(26.15))
+2026-10-07 19:31:37,758 INFO DEM tile ready: Copernicus_DSM_COG_10_N25_00_E089_00_DEM
+2026-10-07 19:31:39,075 INFO DEM tile ready: Copernicus_DSM_COG_10_N25_00_E090_00_DEM
+2026-10-07 19:31:40,283 INFO DEM tile ready: Copernicus_DSM_COG_10_N25_00_E091_00_DEM
+2026-10-07 19:31:41,483 INFO DEM tile ready: Copernicus_DSM_COG_10_N25_00_E092_00_DEM
+2026-10-07 19:31:42,732 INFO DEM tile ready: Copernicus_DSM_COG_10_N26_00_E089_00_DEM
+2026-10-07 19:31:43,943 INFO DEM tile ready: Copernicus_DSM_COG_10_N26_00_E090_00_DEM
+2026-10-07 19:31:45,154 INFO DEM tile ready: Copernicus_DSM_COG_10_N26_00_E091_00_DEM
+2026-10-07 19:31:46,356 INFO DEM tile ready: Copernicus_DSM_COG_10_N26_00_E092_00_DEM
+2026-10-07 19:31:52,021 INFO dem_grid = 10263 x 4374 px at 30 m
+2026-10-07 19:31:55,401 INFO boto3 not available, falling back to a DummySession.
+2026-10-07 19:31:56,575 INFO WorldCover tile read: ESA_WorldCover_10m_2021_v200_N24E087_Map.tif
+2026-10-07 19:31:56,575 INFO boto3 not available, falling back to a DummySession.
+2026-10-07 19:31:57,889 INFO WorldCover tile read: ESA_WorldCover_10m_2021_v200_N24E090_Map.tif
+2026-10-07 19:31:58,302 WARNING Reported slides (COOLR) skipped (404 Client Error: Not Found for url: https://gis.earthdata.nasa.gov/gis05/rest/services/Landslides/COOLR_Reports_Points/FeatureServer/0/query?where=1%3D1&geometry=89.784444%2C25.0006475%2C92.8327367%2C26.14969&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&outSR=4326&f=geojson&resultOffset=0&resultRecordCount=1000)
+2026-10-07 19:31:58,303 INFO segments = 27569
+2026-10-07 19:31:58,303 INFO graph_nodes = 2412
+2026-10-07 19:31:58,303 INFO graph_edges = 2690
+2026-10-07 19:31:58,303 INFO largest_component_share = 98%
+2026-10-07 19:31:58,307 INFO road_km = 5362.1
+2026-10-07 19:31:58,307 INFO reported_slides_in_bbox = 0
+2026-10-07 19:31:58,307 INFO reported_slides_in_state = 0
+2026-10-07 19:31:58,307 INFO reported_slides_in_state_dated = 0
+2026-10-07 19:31:58,307 INFO reported_slides_dated_within_10km = 0
+2026-10-07 19:32:12,909 INFO susceptibility_low_moderate_high = 15837 / 8212 / 3520
+2026-10-07 19:32:12,909 INFO slope_p90_median_deg = 15.5
+2026-10-07 19:32:13,071 INFO rain_grid_points = 63
+2026-10-07 19:32:15,338 INFO Hillshade image 2287 x 1004 px
+2026-10-07 19:32:15,740 INFO file_segments.json_kb = 2975.0
+2026-10-07 19:32:15,740 INFO file_graph.json_kb = 230.5
+2026-10-07 19:32:15,740 INFO file_places.json_kb = 2.5
+2026-10-07 19:32:15,740 INFO file_grid.json_kb = 0.8
+2026-10-07 19:32:15,740 INFO file_events.json_kb = 0.0
+2026-10-07 19:32:15,740 INFO file_boundary.json_kb = 14.1
+2026-10-07 19:32:15,740 INFO file_meta.json_kb = 3.8
+2026-10-07 19:32:16,734 INFO Live rain: 63 points x 192 hours
+Build success; report at reports/build_report.md
