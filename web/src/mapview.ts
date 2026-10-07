@@ -77,6 +77,12 @@ export class MapView {
       "bottom-right",
     );
     this.map.addControl(new maplibregl.ScaleControl({ unit: "metric" }), "bottom-right");
+    // The container can still be resizing while the map is created, which leaves
+    // the first fit far too zoomed out. Fit again once the map has loaded.
+    this.map.once("load", () => {
+      this.map.resize();
+      this.map.fitBounds([[w, s], [e, n]], { padding: 24, duration: 0 });
+    });
     void this.loadBasemap();
   }
 
@@ -150,7 +156,8 @@ export class MapView {
       },
       before,
     );
-    m.addSource("segs", { type: "geojson", data: empty, promoteId: "i" });
+    // Low tolerance: the default simplification drops 200 m pieces when zoomed out.
+    m.addSource("segs", { type: "geojson", data: empty, promoteId: "i", tolerance: 0.08 });
     m.addLayer({ id: "seg-casing", type: "line", source: "segs", layout: { "line-cap": "round", "line-join": "round" }, paint: { "line-color": "#ffffff", "line-opacity": 0.85, "line-width": ["interpolate", ["linear"], ["zoom"], 7, 2, 12, 6.5, 16, 12] } }, before);
     m.addLayer({ id: "seg-risk", type: "line", source: "segs", layout: { "line-cap": "round", "line-join": "round" } }, before);
     m.addSource("severe", { type: "geojson", data: empty });
@@ -308,7 +315,8 @@ export class MapView {
     m.setPaintProperty("seg-risk", "line-color", ["match", lv, 3, c3, 2, c2, 1, c1, c0]);
     m.setPaintProperty("seg-risk", "line-width", [
       "interpolate", ["linear"], ["zoom"],
-      7, ["match", lv, 3, 2.8, 2, 2.2, 1, 1.5, 0.8],
+      6, ["match", lv, 3, 2.4, 2, 1.8, 1, 1.2, 0.9],
+      8, ["match", lv, 3, 3.2, 2, 2.6, 1, 1.8, 1.1],
       12, ["match", lv, 3, 7, 2, 5.5, 1, 3.5, 1.8],
       16, ["match", lv, 3, 12, 2, 10, 1, 7, 4],
     ]);

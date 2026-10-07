@@ -93,7 +93,8 @@ a { color: var(--accent); }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 /* ---------- App frame ---------- */
-.app { height: 100dvh; display: grid; grid-template-rows: auto auto 1fr; }
+.app { height: 100dvh; display: flex; flex-direction: column; }
+.app > .body { flex: 1 1 auto; }
 .topbar {
   display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
   padding: 10px 16px; padding-top: calc(10px + env(safe-area-inset-top, 0px));
