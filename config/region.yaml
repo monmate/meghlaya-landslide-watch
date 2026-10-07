@@ -1,0 +1,68 @@
+# Region and road-network settings for Meghalaya Road Landslide Watch.
+# Every value here is a documented default; change it here, not in code.
+
+region:
+  name: Meghalaya
+  # ISO 3166-2 code used to find the state boundary in OpenStreetMap.
+  iso3166_2: IN-ML
+  # Rough box used only as a fallback if the OSM boundary cannot be read.
+  # The real extent always comes from the OSM boundary.
+  fallback_bbox: [89.7, 24.95, 92.9, 26.2]
+  # Projected CRS for distances, slopes and lengths. Meghalaya spans UTM zones
+  # 45 and 46; the length error at the western edge stays below 0.1%.
+  utm_epsg: 32646
+
+roads:
+  # OSM highway classes included statewide (hackathon default, plan row A6,
+  # widened to tertiary so tourist villages connect to the network).
+  highway_classes:
+    - trunk
+    - trunk_link
+    - primary
+    - primary_link
+    - secondary
+    - secondary_link
+    - tertiary
+    - tertiary_link
+  segment_target_m: 200
+  # Typical speeds used for travel-time estimates (km/h). Assumptions, not measurements.
+  speed_kmh:
+    trunk: 40
+    primary: 35
+    secondary: 30
+    tertiary: 25
+    default: 25
+
+features:
+  # Points are sampled along each segment and at these offsets across it (metres).
+  offsets_m: [-100, -50, 0, 50, 100]
+  sample_step_m: 30
+  # Window for local relief (max minus min elevation), in metres.
+  relief_window_m: 330
+  # Reported slides count when within max(1 km, their location accuracy).
+  slide_radius_m: 1000
+  # Ignore reported slides whose location is vaguer than this (metres).
+  slide_max_accuracy_m: 5000
+
+rain:
+  # Rain grid spacing in degrees (about 25 km, the forecast models' resolution).
+  grid_step_deg: 0.25
+  # Keep grid points within this distance of the state boundary (degrees).
+  grid_margin_deg: 0.2
+  # Hours of history fetched for the live view (needs 24 h + 72 h antecedent before the slider start).
+  past_days: 5
+  forecast_days: 3
+
+replay:
+  id: 2022-06
+  title: "June 2022 monsoon storm"
+  # Window of hourly rain fetched (UTC dates, inclusive), with antecedent days.
+  start_date: "2022-06-09"
+  end_date: "2022-06-19"
+  # Window shown on the slider (IST).
+  show_from: "2022-06-14T00:00"
+  show_to: "2022-06-18T23:00"
+  note: >-
+    Deadly landslides reported on 17 June 2022 in East Khasi Hills (Laitlarem)
+    and South West Khasi Hills (Jashiar), with damage on NH-6 near Sonapur.
+  source_url: "https://etvbharat.com/amp/english/bharat/five-reported-dead-in-meghalaya-landslides/na20220617085349679679611"

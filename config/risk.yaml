@@ -1,0 +1,63 @@
+# Rules-based risk index for the hackathon build (plan row A12).
+# This is a transparent RISK ESTIMATE, not a landslide prediction. No weight
+# below was fitted to landslide data: they are documented expert defaults to be
+# replaced once dated landslide records allow a trained model (Gate A).
+
+susceptibility:
+  # Share of the index each factor carries. Weights are renormalised if a
+  # factor could not be computed (the build report says which).
+  weights:
+    slope: 0.40
+    relief: 0.15
+    cross_slope: 0.15
+    landcover: 0.15
+    past_slides: 0.15
+  # Linear ramps: value at or below the first number scores 0, at or above the second scores 1.
+  ramps:
+    slope_p90_deg: [10, 35]
+    relief_m: [30, 250]
+    cross_slope_deg: [5, 30]
+    past_slides_count: [0, 3]
+  # How exposed each ESA WorldCover class leaves a slope (0 = protective, 1 = exposed).
+  landcover_exposure:
+    10: 0.2   # tree cover
+    20: 0.4   # shrubland
+    30: 0.4   # grassland
+    40: 0.6   # cropland
+    50: 0.5   # built-up
+    60: 1.0   # bare or sparse vegetation
+    70: 0.0   # snow and ice
+    80: 0.0   # permanent water
+    90: 0.1   # herbaceous wetland
+    95: 0.1   # mangroves
+    100: 0.3  # moss and lichen
+  # Segments whose 90th-percentile slope is below this stay Low whatever else applies.
+  flat_slope_deg: 8
+  # Classes are relative within Meghalaya's hillside road segments:
+  # top 15% = High, next 35% = Moderate, the rest Low.
+  classes:
+    moderate_quantile: 0.50
+    high_quantile: 0.85
+
+trigger:
+  # IMD's 24-hour rainfall categories (mm), as printed in IMD national bulletins.
+  source: "IMD 24-hour rainfall categories"
+  source_url: "https://rsmcnewdelhi.imd.gov.in/uploads/archive/1/1_f4c90a_12.National Bulletin No 12-10th Sept2024_0830 IST.pdf"
+  categories_mm_24h:
+    heavy: 64.5
+    very_heavy: 115.6
+    extremely_heavy: 204.5
+  # Wet-ground bump: if the 72 hours before the current 24-hour window held at
+  # least this much rain, the trigger moves up one step. Provisional heuristic.
+  antecedent:
+    window_h: 72
+    wet_mm: 150
+  # Risk level from susceptibility class (rows) and trigger step (columns 0..3):
+  # 0 = below heavy, 1 = heavy, 2 = very heavy, 3 = extremely heavy.
+  # Levels: 0 Low, 1 Moderate, 2 High, 3 Severe.
+  matrix:
+    low:      [0, 0, 1, 2]
+    moderate: [0, 1, 2, 3]
+    high:     [0, 2, 3, 3]
+
+levels: [Low, Moderate, High, Severe]
